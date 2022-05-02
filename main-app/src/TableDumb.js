@@ -84,7 +84,6 @@ function RowContent(props) {
 function Table(props) {
     const headerRef = useRef(null);
     useEffect(() => {
-        // THIS SEEMS THE ONLY PLACE WE CAN PICK UP THE REF FOR THE HEADER
         store.headerOffset = ReactDOM.findDOMNode(headerRef.current).getBoundingClientRect().top;
     }, [])
 
@@ -203,10 +202,7 @@ export default function TableDumb() {
     ])
 
     const handleScroll = useCallback(e => {
-        let scrollTop = e.srcElement.body.scrollTop;
-
-        //HOW DO WE GET THE REFS HERE FOR THE ITEM OFFSET?
-
+        let scrollTop = e.target.body.scrollTop;
         if (scrollTop >= store.headerOffset) {
             setTableHeaderFixed(true);
         } else {
